@@ -97,19 +97,23 @@ public class ModifyFirstActivity extends AppCompatActivity {
             x.setAddress(address);
             x.setGender(gender);
             x.setIdNganh(idNganh);
-            XService xService = ApiClient.xService();
-            Call<X> call2 = xService.create(x);
-            call2.enqueue(new Callback<X>() {
-                @Override
-                public void onResponse(Call<X> call, Response<X> response) {
-                    System.out.println(response.code());
-                    X data = response.body();
-                    finish();
-                }
-                @Override
-                public void onFailure(Call<X> call, Throwable t) {
-                }
-            });
+
+            create(x);
+        });
+    }
+    private void create(X x){
+        XService xService = ApiClient.xService();
+        Call<X> call2 = xService.create(x);
+        call2.enqueue(new Callback<X>() {
+            @Override
+            public void onResponse(Call<X> call, Response<X> response) {
+                System.out.println(response.code());
+                X data = response.body();
+                finish();
+            }
+            @Override
+            public void onFailure(Call<X> call, Throwable t) {
+            }
         });
     }
 }
