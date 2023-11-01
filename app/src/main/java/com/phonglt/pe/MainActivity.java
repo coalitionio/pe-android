@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     Button btnAdd1;
     Button btnAdd2;
+    Button btn3;
     ActivityResultLauncher<Intent> someActivityResultLauncher = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             new ActivityResultCallback<ActivityResult>() {
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private void mapping(){
         btnAdd1 = (Button) findViewById(R.id.btnAdd1);
         btnAdd2 = (Button) findViewById(R.id.btnAdd2);
+        btn3 = (Button) findViewById(R.id.btn3);
         lvMain = (ListView) findViewById(R.id.lvMain);
     }
     @Override
@@ -67,6 +69,11 @@ public class MainActivity extends AppCompatActivity {
         btnAdd2.setOnClickListener(v -> {
             Intent intent = new Intent(this, ModifyFirstActivity.class);
             intent.putExtra("spinner",items2);
+            someActivityResultLauncher.launch(intent);
+        });
+        btn3.setOnClickListener(v ->{
+            Intent intent = new Intent(this, SubActivity.class);
+            intent.putExtra("subItems",items2);
             someActivityResultLauncher.launch(intent);
         });
     }
